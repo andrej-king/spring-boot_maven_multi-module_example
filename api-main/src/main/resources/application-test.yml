@@ -1,0 +1,8 @@
+# config for TEST env
+
+spring:
+    datasource:
+        url: "jdbc:postgresql://localhost:5432/example_app_test"
+        username: "test_app"
+        password: "test_password"
+

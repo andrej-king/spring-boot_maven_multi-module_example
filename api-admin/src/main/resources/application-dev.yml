@@ -1,0 +1,28 @@
+# config for DEV env
+
+app-config:
+    debug: true
+
+spring:
+    jpa:
+        show-sql: true
+        hibernate:
+            ddl-auto: update
+
+logging.config: classpath:log4j2-dev.xml
+
+springdoc:
+    cache.disabled: true
+    api-docs:
+        enabled: true
+        path: /docs
+    swagger-ui:
+        enabled: true
+        path: /swagger
+        #For sorting endpoints alphabetically
+        operationsSorter: alpha
+        #For sorting tags alphabetically
+        tagsSorter: alpha
+        layout: BaseLayout
+        doc-expansion: none
+        disable-swagger-default-url: true
