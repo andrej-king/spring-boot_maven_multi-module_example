@@ -1,0 +1,14 @@
+# config for TEST env
+
+spring:
+    jpa:
+        show-sql: true
+        hibernate:
+            ddl-auto: update
+
+    datasource:
+        url: "jdbc:postgresql://${MAIN_API_DB_SERVICE:localhost}:5432/example_app_test"
+        username: "test_app"
+        password: "test_password"
+
+logging.config: classpath:log4j2-dev.xml

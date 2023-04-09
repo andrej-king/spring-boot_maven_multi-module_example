@@ -1,0 +1,50 @@
+# default config
+
+server:
+    port: ${MAIN_API_PORT:8001}
+    error:
+        whitelabel.enabled: false
+        path: /error
+#        servlet.context-path: /api # url prefix
+
+app-config:
+    debug: false
+
+spring:
+    profiles:
+        active: ${MAIN_API_PROFILE:dev} # current active profile
+    jpa:
+        hibernate:
+            ddl-auto: none
+        database: postgresql
+        open-in-view: false
+
+    datasource:
+        url: "jdbc:postgresql://${MAIN_API_DB_SERVICE:localhost}:5432/example_app"
+        username: "app"
+        password: "password"
+
+    sql:
+        init:
+            platform: postgres
+            mode: always
+
+logging.config: classpath:log4j2.xml
+
+rsa:
+    private-key: classpath:certs/private.pem
+    public-key: classpath:certs/public.pem
+
+springdoc:
+    api-docs:
+        enabled: false
+    swagger-ui:
+        enabled: false
+
+test:
+    reset.sql.identity: "TRUNCATE TABLE %s RESTART IDENTITY;"
+
+#management.endpoints.web.exposure.include: info, health
+management.endpoints.web.exposure.include: '*'
+management.endpoint.health.show-details: 'always'
+management.info.env.enabled: true

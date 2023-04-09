@@ -1,0 +1,10 @@
+var
+docker
+docs
+.dockerignore
+.editorconfig
+.gitignore
+docker-compose.yaml
+LICENSE
+Makefile
+README.md

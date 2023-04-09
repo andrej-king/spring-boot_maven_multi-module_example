@@ -1,0 +1,269 @@
+{
+    "info": {
+        "_postman_id": "6dcbd2ef-7309-4910-9d61-9c47f9505c6c",
+        "name": "Example_App_Java",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Auth",
+            "item": [
+                {
+                    "name": "Sign Up",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"login\": \"John\",\n    \"email\": \"test@example.com\",\n    \"password\": \"somePassword \",\n    \"fullName\": \"  John Doe \"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{url}}{{url_prefix}}/auth/signup",
+                            "host": [
+                                "{{url}}{{url_prefix}}"
+                            ],
+                            "path": [
+                                "auth",
+                                "signup"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Sign In",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "let jsonData = JSON.parse(responseBody);",
+                                    "",
+                                    "// set jwt token",
+                                    "if (jsonData.accessToken) {",
+                                    "    pm.environment.set('access_token', jsonData.accessToken);",
+                                    "}",
+                                    "",
+                                    "// set refresh token",
+                                    "if (jsonData.refreshToken) {",
+                                    "    pm.environment.set('refresh_token', jsonData.refreshToken);",
+                                    "}",
+                                    ""
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"login\": \"John\",\n    \"password\": \"somePassword\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{url}}{{url_prefix}}/auth/signin",
+                            "host": [
+                                "{{url}}{{url_prefix}}"
+                            ],
+                            "path": [
+                                "auth",
+                                "signin"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Refresh token",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "let jsonData = JSON.parse(responseBody);",
+                                    "",
+                                    "// set jwt token",
+                                    "if (jsonData.accessToken) {",
+                                    "    pm.environment.set('access_token', jsonData.accessToken);",
+                                    "}",
+                                    "",
+                                    "// set refresh token",
+                                    "if (jsonData.refreshToken) {",
+                                    "    pm.environment.set('refresh_token', jsonData.refreshToken);",
+                                    "}",
+                                    ""
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"refreshToken\": \"{{refresh_token}}\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{url}}{{url_prefix}}/auth/refresh",
+                            "host": [
+                                "{{url}}{{url_prefix}}"
+                            ],
+                            "path": [
+                                "auth",
+                                "refresh"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Admin",
+            "item": [
+                {
+                    "name": "Users",
+                    "item": [
+                        {
+                            "name": "Get list of users",
+                            "request": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{access_token}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{url}}{{url_prefix}}/users",
+                                    "host": [
+                                        "{{url}}{{url_prefix}}"
+                                    ],
+                                    "path": [
+                                        "users"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Get user by id",
+                            "request": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{access_token}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{url}}{{url_prefix}}/users/1",
+                                    "host": [
+                                        "{{url}}{{url_prefix}}"
+                                    ],
+                                    "path": [
+                                        "users",
+                                        "1"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Delete user by id",
+                            "request": {
+                                "method": "DELETE",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{access_token}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{url}}{{url_prefix}}/users/1",
+                                    "host": [
+                                        "{{url}}{{url_prefix}}"
+                                    ],
+                                    "path": [
+                                        "users",
+                                        "1"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Client",
+            "item": [
+                {
+                    "name": "User",
+                    "item": [
+                        {
+                            "name": "Profile",
+                            "item": [
+                                {
+                                    "name": "Update password",
+                                    "request": {
+                                        "method": "PUT",
+                                        "header": [
+                                            {
+                                                "key": "Authorization",
+                                                "value": "Bearer {{access_token}}",
+                                                "type": "text"
+                                            }
+                                        ],
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n    \"oldPassword\": \" somePassword\",\n    \"newPassword\": \"someNewPassword \"\n}",
+                                            "options": {
+                                                "raw": {
+                                                    "language": "json"
+                                                }
+                                            }
+                                        },
+                                        "url": {
+                                            "raw": "{{url}}{{url_prefix}}/users/update/password",
+                                            "host": [
+                                                "{{url}}{{url_prefix}}"
+                                            ],
+                                            "path": [
+                                                "users",
+                                                "update",
+                                                "password"
+                                            ]
+                                        }
+                                    },
+                                    "response": []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
