@@ -46,7 +46,7 @@ make generate-jwt-rsa-keypair-admin
 
 ## For local use should be installed
 
-* [JDK 20](https://openjdk.org) (with IDE is non-required)
+* [JDK 19](https://openjdk.org) (with IDE is non-required)
 * [Maven 3.8.6](https://maven.apache.org) (with IDE is non-required)
 
 ## Pages (links)
