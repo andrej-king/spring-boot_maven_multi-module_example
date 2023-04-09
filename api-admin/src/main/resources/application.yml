@@ -12,7 +12,7 @@ app-config:
 
 spring:
     profiles:
-        active: dev # current active profile
+        active: ${ADMIN_API_PROFILE:dev} # current active profile
 
     jpa:
         hibernate:
@@ -21,8 +21,7 @@ spring:
         open-in-view: false
 
     datasource:
-        url: "jdbc:postgresql://localhost:5432/example_app"
-        #        url: "jdbc:postgresql://postgres:5432/example_app"
+        url: "jdbc:postgresql://${ADMIN_API_DB_SERVICE:localhost}:5432/example_app"
         username: "app"
         password: "password"
 
